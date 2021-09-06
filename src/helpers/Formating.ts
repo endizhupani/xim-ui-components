@@ -11,6 +11,16 @@ export function formatDate(date: Date) {
 		.padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
 }
 
+/**
+ * Formats the error message
+ * @param error Error to be formatted
+ * @returns the Error string
+ * @example
+ * ```
+ * formatErrorMessage(new Error("Error message"))
+ * // returns "Error message"
+ * ```
+ */
 export function formatErrorMessage(error: any): string {
 	if ("errorMessage" in error) {
 		const errorObject = JSON.parse(error.errorMessage);
