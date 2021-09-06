@@ -1,5 +1,5 @@
-import { Cancel, CheckCircle } from '@material-ui/icons';
-import React from 'react';
+import { Cancel, CheckCircle } from "@material-ui/icons";
+import React from "react";
 
 /**
  *
@@ -7,19 +7,19 @@ import React from 'react';
  * @returns
  */
 export const CheckMark = (props: { value: boolean }) => {
-  if (props.value) {
-    return (
-      <CheckCircle
-        style={{ width: '17px', height: '17px' }}
-        className="icon-default"
-      ></CheckCircle>
-    );
-  }
+	if (props.value) {
+		return (
+			<CheckCircle
+				style={{ width: "17px", height: "17px" }}
+				className="icon-default"
+			></CheckCircle>
+		);
+	}
 
-  return (
-    <Cancel
-      style={{ width: '17px', height: '17px' }}
-      className="icon-disabled"
-    ></Cancel>
-  );
+	return (
+		<Cancel
+			style={{ width: "17px", height: "17px" }}
+			className="icon-disabled"
+		></Cancel>
+	);
 };
