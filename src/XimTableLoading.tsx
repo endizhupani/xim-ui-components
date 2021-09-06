@@ -1,7 +1,11 @@
 import Skeleton from "@material-ui/lab/Skeleton";
 import React from "react";
 
-export const XimTableLoading = (props: { height: string }) => {
+export type TableLoadingProps = {
+	height: string;
+};
+
+export const XimTableLoading = (props: TableLoadingProps) => {
 	return (
 		<div style={{ marginTop: "1em" }}>
 			<Skeleton
