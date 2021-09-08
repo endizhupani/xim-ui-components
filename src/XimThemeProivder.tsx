@@ -1,4 +1,5 @@
 import { createTheme, ThemeProvider } from "@material-ui/core";
+import React from "react";
 import { FunctionComponent } from "react";
 
 const theme = createTheme({
@@ -70,6 +71,6 @@ const theme = createTheme({
 	},
 });
 
-export const XimeaProcessStep: FunctionComponent<{}> = (props) => {
+export const XimThemeProivder: FunctionComponent<{}> = (props) => {
 	return <ThemeProvider theme={theme}>{props.children}</ThemeProvider>;
 };

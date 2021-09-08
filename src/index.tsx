@@ -7,3 +7,4 @@ export * from "./CheckMark";
 export * from "./XimInstructionsText";
 export * from "./XimStepper";
 export * from "./XimLink";
+export * from "./XimThemeProivder";
