@@ -71,6 +71,6 @@ const theme = createTheme({
 	},
 });
 
-export const XimThemeProivder: FunctionComponent<{}> = (props) => {
+export const XimThemeProvider: FunctionComponent<{}> = (props) => {
 	return <ThemeProvider theme={theme}>{props.children}</ThemeProvider>;
 };
