@@ -1,4 +1,4 @@
-import { createTheme, CssBaseline, ThemeProvider } from "@material-ui/core";
+import { createTheme, ThemeProvider } from "@material-ui/core";
 import React from "react";
 import { FunctionComponent } from "react";
 
