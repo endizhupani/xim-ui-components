@@ -1,4 +1,4 @@
-import { createTheme, ThemeProvider } from "@material-ui/core";
+import { createTheme, CssBaseline, ThemeProvider } from "@material-ui/core";
 import React from "react";
 import { FunctionComponent } from "react";
 
@@ -72,5 +72,10 @@ const theme = createTheme({
 });
 
 export const XimThemeProvider: FunctionComponent<{}> = (props) => {
-	return <ThemeProvider theme={theme}>{props.children}</ThemeProvider>;
+	return (
+		<ThemeProvider theme={theme}>
+			<CssBaseline />
+			{props.children}
+		</ThemeProvider>
+	);
 };

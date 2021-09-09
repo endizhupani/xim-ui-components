@@ -8,3 +8,4 @@ export * from "./XimInstructionsText";
 export * from "./XimStepper";
 export * from "./XimLink";
 export * from "./XimThemeProvider";
+export * from "./CurrencyInput";
