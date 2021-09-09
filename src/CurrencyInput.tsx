@@ -74,8 +74,17 @@ export const CurrencyInput = (props: {
 	error: string;
 	label: string;
 	max: MoneyDto;
+	hideControls?: boolean;
 }) => {
-	const { value, onValueChanged, error, label, max, defaultValue } = props;
+	const {
+		value,
+		onValueChanged,
+		error,
+		label,
+		max,
+		defaultValue,
+		hideControls,
+	} = props;
 
 	return (
 		<>
@@ -102,48 +111,51 @@ export const CurrencyInput = (props: {
 					},
 				}}
 			/>
-
-			<ButtonGroup
-				size="small"
-				style={{ marginLeft: "1em" }}
-				aria-label="small outlined button group"
-			>
-				<Button
-					onClick={() => {
-						onValueChanged(max);
-					}}
-					color={value.amount == max.amount ? "primary" : "default"}
+			{!hideControls && (
+				<ButtonGroup
+					size="small"
+					style={{ marginLeft: "1em" }}
+					aria-label="small outlined button group"
 				>
-					Full
-				</Button>
-				<Button
-					onClick={() => {
-						onValueChanged(defaultValue);
-					}}
-					color={
-						value.amount == defaultValue.amount
-							? "primary"
-							: "default"
-					}
-				>
-					Partial
-				</Button>
-				<Button
-					onClick={() =>
-						onValueChanged({
-							amount: 0,
-							currencyCode: value.currencyCode,
-							amountFormatted: formatCurrency(
-								value.currencyCode,
-								0
-							),
-						})
-					}
-					color={value.amount == 0 ? "primary" : "default"}
-				>
-					None
-				</Button>
-			</ButtonGroup>
+					<Button
+						onClick={() => {
+							onValueChanged(max);
+						}}
+						color={
+							value.amount == max.amount ? "primary" : "default"
+						}
+					>
+						Full
+					</Button>
+					<Button
+						onClick={() => {
+							onValueChanged(defaultValue);
+						}}
+						color={
+							value.amount == defaultValue.amount
+								? "primary"
+								: "default"
+						}
+					>
+						Partial
+					</Button>
+					<Button
+						onClick={() =>
+							onValueChanged({
+								amount: 0,
+								currencyCode: value.currencyCode,
+								amountFormatted: formatCurrency(
+									value.currencyCode,
+									0
+								),
+							})
+						}
+						color={value.amount == 0 ? "primary" : "default"}
+					>
+						None
+					</Button>
+				</ButtonGroup>
+			)}
 		</>
 	);
 };
