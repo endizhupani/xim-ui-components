@@ -9,3 +9,4 @@ export * from "./XimStepper";
 export * from "./XimLink";
 export * from "./XimThemeProvider";
 export * from "./CurrencyInput";
+export * from "./QuantityInput";
