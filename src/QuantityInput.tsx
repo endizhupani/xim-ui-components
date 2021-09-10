@@ -37,7 +37,7 @@ export const QuantityInput = (props: {
 				}
 				setVal(parseInt(e.target.value));
 			}}
-			onBlur={(e) => {
+			onBlur={(_) => {
 				if (
 					val > (props.max ?? Infinity) ||
 					val < (props.min ?? -Infinity)
