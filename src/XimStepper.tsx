@@ -75,23 +75,21 @@ export const XimStepper = (props: StepperProps) => {
 			<XimeaProcessStep
 				helperText={props.steps[activeStep].properties.helperText}
 				back={{
+					...props.steps[activeStep].properties.back,
 					action: async () => {
 						await props.steps[activeStep].properties.back.action();
 						handleBack();
 					},
-					disabled: props.steps[activeStep].properties.back.disabled,
 				}}
 				next={{
+					...props.steps[activeStep].properties.next,
 					action: async () => {
 						await props.steps[activeStep].properties.next.action();
 						handleNext();
 					},
-					disabled: props.steps[activeStep].properties.next.disabled,
 				}}
 				reset={{
-					disabled:
-						props.steps[activeStep].properties.next.disabled ??
-						false,
+					...props.steps[activeStep].properties.reset,
 					action: handleReset,
 				}}
 			>
@@ -110,6 +108,7 @@ export type XimeaProcessStepData = {
 type ButtonData = {
 	action: () => Promise<void>;
 	disabled?: boolean;
+	label?: string;
 };
 
 type InternalProcessStepProperties = {
@@ -122,7 +121,7 @@ type InternalProcessStepProperties = {
 export type ProcessStepProperties = {
 	next: ButtonData;
 	back: ButtonData;
-	reset: { disabled: boolean };
+	reset: { disabled?: boolean; label?: string };
 	helperText?: string;
 };
 
@@ -157,7 +156,7 @@ export const XimeaProcessStep: FunctionComponent<InternalProcessStepProperties> 
 						}}
 						className={classes.button}
 					>
-						Reset
+						{reset.label || "Reset"}
 					</Button>
 				</div>
 				<div>
@@ -168,7 +167,7 @@ export const XimeaProcessStep: FunctionComponent<InternalProcessStepProperties> 
 							back.action();
 						}}
 					>
-						Back
+						{back.label || "Back"}
 					</Button>
 					<Button
 						onClick={() => {
@@ -179,7 +178,7 @@ export const XimeaProcessStep: FunctionComponent<InternalProcessStepProperties> 
 						disabled={next.disabled}
 						className={classes.button}
 					>
-						Next
+						{next.label || "Next"}
 					</Button>
 				</div>
 			</div>
