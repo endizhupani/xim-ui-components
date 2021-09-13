@@ -19,10 +19,12 @@ const useStyles = makeStyles((theme: Theme) =>
 export const XimBackdrop = (props: { loadingText: string; open: boolean }) => {
 	const { loadingText, open } = props;
 	const classes = useStyles();
-	<Backdrop className={classes.backdrop} open={open}>
-		<CircularProgress color="primary" />
-		<Typography style={{ marginTop: "1em", color: "white" }}>
-			{loadingText}
-		</Typography>
-	</Backdrop>;
+	return (
+		<Backdrop className={classes.backdrop} open={open}>
+			<CircularProgress color="primary" />
+			<Typography style={{ marginTop: "1em", color: "white" }}>
+				{loadingText}
+			</Typography>
+		</Backdrop>
+	);
 };
