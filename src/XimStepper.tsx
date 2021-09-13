@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export type StepperProps = {
 	onReset: () => void;
+	endScreen?: React.ReactNode;
 	steps: XimeaProcessStepData[];
 };
 
@@ -72,29 +73,39 @@ export const XimStepper = (props: StepperProps) => {
 				})}
 			</Stepper>
 			<Divider></Divider>
-			<XimeaProcessStep
-				helperText={props.steps[activeStep].properties.helperText}
-				back={{
-					...props.steps[activeStep].properties.back,
-					action: async () => {
-						await props.steps[activeStep].properties.back.action();
-						handleBack();
-					},
-				}}
-				next={{
-					...props.steps[activeStep].properties.next,
-					action: async () => {
-						await props.steps[activeStep].properties.next.action();
-						handleNext();
-					},
-				}}
-				reset={{
-					...props.steps[activeStep].properties.reset,
-					action: handleReset,
-				}}
-			>
-				{props.steps[activeStep].content}
-			</XimeaProcessStep>
+			{activeStep < props.steps.length ? (
+				<XimeaProcessStep
+					helperText={props.steps[activeStep].properties.helperText}
+					back={{
+						...props.steps[activeStep].properties.back,
+						action: async () => {
+							await props.steps[
+								activeStep
+							].properties.back.action();
+							handleBack();
+						},
+					}}
+					next={{
+						...props.steps[activeStep].properties.next,
+						action: async () => {
+							await props.steps[
+								activeStep
+							].properties.next.action();
+							handleNext();
+						},
+					}}
+					reset={{
+						...props.steps[activeStep].properties.reset,
+						action: handleReset,
+					}}
+				>
+					{props.steps[activeStep].content}
+				</XimeaProcessStep>
+			) : (
+				props.endScreen || (
+					<XimInstructionsText text="Process is finished." />
+				)
+			)}
 		</div>
 	);
 };
