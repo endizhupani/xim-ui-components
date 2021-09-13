@@ -35,10 +35,6 @@ export const XimStepper = (props: StepperProps) => {
 	const [activeStep, setActiveStep] = React.useState(0);
 	const confirm = useConfirm();
 	const handleNext = () => {
-		if (activeStep + 1 >= props.steps.length) {
-			return;
-		}
-
 		setActiveStep((prevActiveStep) => prevActiveStep + 1);
 	};
 
@@ -79,19 +75,24 @@ export const XimStepper = (props: StepperProps) => {
 					back={{
 						...props.steps[activeStep].properties.back,
 						action: async () => {
-							await props.steps[
-								activeStep
-							].properties.back.action();
-							handleBack();
+							if (
+								(await props.steps[
+									activeStep
+								].properties.back.action()) !== false
+							)
+								handleBack();
 						},
 					}}
 					next={{
 						...props.steps[activeStep].properties.next,
 						action: async () => {
-							await props.steps[
-								activeStep
-							].properties.next.action();
-							handleNext();
+							if (
+								(await props.steps[
+									activeStep
+								].properties.next.action()) !== false
+							) {
+								handleNext();
+							}
 						},
 					}}
 					reset={{
@@ -117,7 +118,7 @@ export type XimeaProcessStepData = {
 };
 
 type ButtonData = {
-	action: () => Promise<void>;
+	action: () => Promise<boolean | void>;
 	disabled?: boolean;
 	label?: string;
 };
