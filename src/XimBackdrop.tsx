@@ -1,30 +1,29 @@
-import {
-	Backdrop,
-	CircularProgress,
-	Theme,
-	Typography,
-} from "@material-ui/core";
-import { makeStyles, createStyles } from "@material-ui/styles";
+import { Backdrop, CircularProgress, Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import React from "react";
 
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		backdrop: {
-			zIndex: theme.zIndex.drawer + 1,
-			flexDirection: "column",
-		},
-	})
-);
+const PREFIX = "XimBackdrop";
+
+const classes = {
+	backdrop: `${PREFIX}-backdrop`,
+};
+
+const StyledBackdrop = styled(Backdrop)(({ theme: Theme }) => ({
+	[`&.${classes.backdrop}`]: {
+		zIndex: Theme.zIndex.drawer + 1,
+		flexDirection: "column",
+	},
+}));
 
 export const XimBackdrop = (props: { loadingText: string; open: boolean }) => {
 	const { loadingText, open } = props;
-	const classes = useStyles();
+
 	return (
-		<Backdrop className={classes.backdrop} open={open}>
+		<StyledBackdrop className={classes.backdrop} open={open}>
 			<CircularProgress color="primary" />
 			<Typography style={{ marginTop: "1em", color: "white" }}>
 				{loadingText}
 			</Typography>
-		</Backdrop>
+		</StyledBackdrop>
 	);
 };

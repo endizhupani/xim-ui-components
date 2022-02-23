@@ -2,33 +2,67 @@ import {
 	Accordion,
 	AccordionDetails,
 	AccordionSummary,
-	createStyles,
-	makeStyles,
-	Theme,
 	Typography,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import React from "react";
 import { useState } from "react";
 
-const useAccordionStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		root: {
-			width: "100%",
-		},
-		accordionRoot: {
-			backgroundColor: "#474747",
-		},
-		accordionDetails: {
-			flexDirection: "column",
-		},
-		heading: {
-			fontSize: theme.typography.pxToRem(15),
-			fontWeight: theme.typography.fontWeightRegular,
-			color: theme.palette.primary.main,
-		},
-	})
-);
+const PREFIX = "XimAccordionGroup";
+
+const classes = {
+	root: `${PREFIX}-root`,
+	accordionRoot: `${PREFIX}-accordionRoot`,
+	accordionDetails: `${PREFIX}-accordionDetails`,
+	heading: `${PREFIX}-heading`,
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled("div")(({ theme: Theme }) => ({
+	[`& .${classes.root}`]: {
+		width: "100%",
+	},
+
+	[`& .${classes.accordionRoot}`]: {
+		backgroundColor: "#474747",
+	},
+
+	[`& .${classes.accordionDetails}`]: {
+		flexDirection: "column",
+	},
+
+	[`& .${classes.heading}`]: {
+		fontSize: Theme.typography.pxToRem(15),
+		fontWeight: Theme.typography.fontWeightRegular,
+		color: Theme.palette.primary.main,
+	},
+}));
+
+// const useAccordionStyles = makeStyles((
+//     {
+//         theme: Theme
+//     }
+// ) => ({
+//     [`& .${classes.root}`]: {
+//         width: "100%",
+//     },
+
+//     [`& .${classes.accordionRoot}`]: {
+//         backgroundColor: "#474747",
+//     },
+
+//     [`& .${classes.accordionDetails}`]: {
+//         flexDirection: "column",
+//     },
+
+//     [`& .${classes.heading}`]: {
+//         fontSize: Theme.typography.pxToRem(15),
+//         fontWeight: Theme.typography.fontWeightRegular,
+//         color: Theme.palette.primary.main,
+//     }
+// })
+// );
 export type XimAccordionItem = {
 	title: string | React.ReactNode;
 	content: string | React.ReactNode;
@@ -41,7 +75,7 @@ export type XimAccordionProps = {
 };
 
 export const XimAccordionGroup = (props: XimAccordionProps) => {
-	const accordionClasses = useAccordionStyles();
+	const accordionClasses = classes;
 	const { items } = props;
 	const [expanded, setExpanded] = useState<{ [id: string]: boolean }>(
 		Object.assign(
@@ -58,7 +92,7 @@ export const XimAccordionGroup = (props: XimAccordionProps) => {
 	};
 
 	return (
-		<>
+		<Root>
 			{items.map((item) => (
 				<Accordion
 					square
@@ -82,6 +116,6 @@ export const XimAccordionGroup = (props: XimAccordionProps) => {
 					<AccordionDetails>{item.content}</AccordionDetails>
 				</Accordion>
 			))}
-		</>
+		</Root>
 	);
 };

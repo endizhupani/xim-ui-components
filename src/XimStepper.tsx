@@ -1,28 +1,28 @@
-import {
-	Button,
-	Divider,
-	Step,
-	StepLabel,
-	Stepper,
-	Theme,
-} from "@material-ui/core";
-import { makeStyles, createStyles } from "@material-ui/styles";
+import { Button, Divider, Step, StepLabel, Stepper } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { useConfirm } from "material-ui-confirm";
 import React, { FunctionComponent } from "react";
 import { XimInstructionsText } from "./XimInstructionsText";
-const useStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		button: {
-			marginRight: theme.spacing(1),
-		},
-		root: {
-			width: "100%",
-			display: "flex",
-			flexDirection: "column",
-			height: "100%",
-		},
-	})
-);
+const PREFIX = "XimStepper";
+
+const classes = {
+	button: `${PREFIX}-button`,
+	root: `${PREFIX}-root`,
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled("div")(({ theme: Theme }) => ({
+	[`& .${classes.button}`]: {
+		marginRight: Theme.spacing(1),
+	},
+
+	[`& .${classes.root}`]: {
+		width: "100%",
+		display: "flex",
+		flexDirection: "column",
+		height: "100%",
+	},
+}));
 
 export type StepperProps = {
 	onReset: () => void;
@@ -31,7 +31,6 @@ export type StepperProps = {
 };
 
 export const XimStepper = (props: StepperProps) => {
-	const classes = useStyles();
 	const [activeStep, setActiveStep] = React.useState(0);
 	const confirm = useConfirm();
 	const handleNext = () => {
@@ -141,9 +140,9 @@ export const XimeaProcessStep: FunctionComponent<InternalProcessStepProperties> 
 	props
 ) => {
 	const { reset, back, next, helperText } = props;
-	const classes = useStyles();
+
 	return (
-		<>
+		<Root>
 			<div
 				style={{
 					display: "flex",
@@ -194,6 +193,6 @@ export const XimeaProcessStep: FunctionComponent<InternalProcessStepProperties> 
 					</Button>
 				</div>
 			</div>
-		</>
+		</Root>
 	);
 };

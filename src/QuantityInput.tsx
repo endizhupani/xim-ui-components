@@ -1,17 +1,24 @@
-import { makeStyles, Theme, createStyles, TextField } from "@material-ui/core";
+import { TextField } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import React, { useState } from "react";
 
-const useQuantityInputStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		root: {
-			maxWidth: "130px",
-			"& .MuiFilledInput-inputMarginDense": {
-				paddingTop: theme.spacing(1),
-				textAlign: "right",
-			},
+const PREFIX = "QuantityInput";
+
+const classes = {
+	root: `${PREFIX}-root`,
+};
+
+// TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.
+const Root = styled(TextField)(({ theme: Theme }) => ({
+	[`& .${classes.root}`]: {
+		maxWidth: "130px",
+		"& .MuiFilledInput-inputMarginDense": {
+			paddingTop: Theme.spacing(1),
+			textAlign: "right",
 		},
-	})
-);
+	},
+}));
+
 export const QuantityInput = (props: {
 	value: number;
 	setValue: (newVal: number) => void;
@@ -21,9 +28,9 @@ export const QuantityInput = (props: {
 }) => {
 	const [error, setError] = useState<string>();
 	const [val, setVal] = useState<number>(props.value);
-	const classes = useQuantityInputStyles();
+
 	return (
-		<TextField
+		<Root
 			variant="filled"
 			size="small"
 			type="number"

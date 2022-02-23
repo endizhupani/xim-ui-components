@@ -1,5 +1,6 @@
-import { Link, styled } from "@material-ui/core";
+import { Link } from "@mui/material";
+import { styled } from "@mui/styles";
 
-export const XimLink = styled(Link)({
+export const XimLink: React.ReactNode = styled(Link)(() => ({
 	fontWeight: "bold",
-});
+}));

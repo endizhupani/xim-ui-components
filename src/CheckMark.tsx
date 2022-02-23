@@ -1,4 +1,4 @@
-import { Cancel, CheckCircle } from "@material-ui/icons";
+import { Cancel, CheckCircle } from "@mui/icons-material";
 import React from "react";
 
 /**

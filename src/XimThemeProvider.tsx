@@ -1,10 +1,21 @@
-import { createTheme, ThemeProvider } from "@material-ui/core";
+import {
+	createTheme,
+	ThemeProvider,
+	Theme,
+	StyledEngineProvider,
+	ThemeOptions,
+} from "@mui/material";
 import React from "react";
 import { FunctionComponent } from "react";
 
-const theme = createTheme({
+declare module "@mui/styles/defaultTheme" {
+	// eslint-disable-next-line @typescript-eslint/no-empty-interface
+	interface DefaultTheme extends Theme {}
+}
+
+const themeOptionsV5: ThemeOptions = {
 	palette: {
-		type: "dark",
+		mode: "dark",
 		secondary: {
 			main: "#ec6608",
 			dark: "#ec6608",
@@ -13,16 +24,13 @@ const theme = createTheme({
 			main: "#ec6608",
 			dark: "#ec6608",
 		},
-
 		background: {
 			paper: "#3d3d3d",
 			default: "#252525",
 		},
-
 		text: {
 			primary: "#fff",
 			disabled: "#7d7d7d",
-			hint: "#7d7d7d",
 			secondary: "#ec6608",
 		},
 		action: {
@@ -60,17 +68,23 @@ const theme = createTheme({
 			textTransform: "uppercase",
 		},
 	},
-	overrides: {
+	components: {
 		MuiCssBaseline: {
-			"@global": {
-				body: {
+			styleOverrides: {
+				root: {
 					fontSize: "1rem",
 				},
 			},
 		},
 	},
-});
+};
+
+const theme = createTheme(themeOptionsV5);
 
 export const XimThemeProvider: FunctionComponent<{}> = (props) => {
-	return <ThemeProvider theme={theme}>{props.children}</ThemeProvider>;
+	return (
+		<StyledEngineProvider injectFirst>
+			<ThemeProvider theme={theme}>{props.children}</ThemeProvider>
+		</StyledEngineProvider>
+	);
 };

@@ -1,16 +1,23 @@
-import { createStyles, makeStyles, Theme, Typography } from "@material-ui/core";
+import { Typography } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import React from "react";
-export const useInstructionsStyles = makeStyles((theme: Theme) =>
-	createStyles({
-		instructions: {
-			marginTop: theme.spacing(1),
-			marginBottom: theme.spacing(1),
-		},
-	})
-);
+const PREFIX = "XimInstructionsText";
+
+const classes = {
+	instructions: `${PREFIX}-instructions`,
+};
+
+const StyledTypography = styled(Typography)(({ theme: Theme }) => ({
+	[`&.${classes.instructions}`]: {
+		marginTop: Theme.spacing(1),
+		marginBottom: Theme.spacing(1),
+	},
+}));
+
 export const XimInstructionsText = (props: { text: string }) => {
-	const classes = useInstructionsStyles();
 	return (
-		<Typography className={classes.instructions}>{props.text}</Typography>
+		<StyledTypography className={classes.instructions}>
+			{props.text}
+		</StyledTypography>
 	);
 };

@@ -1,4 +1,4 @@
-import Skeleton from "@material-ui/lab/Skeleton";
+import Skeleton from '@mui/material/Skeleton';
 import React from "react";
 
 export type TableLoadingProps = {
@@ -7,13 +7,13 @@ export type TableLoadingProps = {
 
 export const XimTableLoading = (props: TableLoadingProps) => {
 	return (
-		<div style={{ marginTop: "1em" }}>
+        <div style={{ marginTop: "1em" }}>
 			<Skeleton
-				variant="rect"
+				variant="rectangular"
 				animation="wave"
 				width="100%"
 				height={props.height}
 			></Skeleton>
 		</div>
-	);
+    );
 };

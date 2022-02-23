@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, TextField } from "@material-ui/core";
+import { Button, ButtonGroup, TextField } from "@mui/material";
 import React from "react";
 import NumberFormat from "react-number-format";
 import { formatCurrency } from "./helpers/Formating";
@@ -30,7 +30,7 @@ function realParseFloat(s: string) {
 }
 
 interface NumberFormatCustomProps {
-	inputRef: (instance: NumberFormat | null) => void;
+	ref: (instance: NumberFormat<number> | null) => void;
 	onChange: (event: {
 		target: { name: string; value: string; formattedValue: string };
 	}) => void;
@@ -38,15 +38,16 @@ interface NumberFormatCustomProps {
 	currency: string;
 	min: number;
 }
-
-function NumberFormatCustom(props: NumberFormatCustomProps) {
-	const { inputRef, onChange, ...other } = props;
+const NumberFormatCustom = React.forwardRef(function NumberFormatCustom(
+	props: NumberFormatCustomProps
+) {
+	const { ref, onChange, ...other } = props;
 	return (
 		<NumberFormat
 			{...other}
 			style={{ paddingTop: "15px", textAlign: "right" }}
-			getInputRef={inputRef}
-			onValueChange={(values) => {
+			getInputRef={ref}
+			onValueChange={(values: any) => {
 				onChange({
 					target: {
 						name: props.name,
@@ -65,9 +66,9 @@ function NumberFormatCustom(props: NumberFormatCustomProps) {
 			suffix={other.currency == "EUR" ? " €" : ""}
 		/>
 	);
-}
+});
 
-export const CurrencyInput = (props: {
+export type CurrencyInputProps = {
 	value: MoneyDto;
 	defaultValue: MoneyDto;
 	onValueChanged: (newValue?: MoneyDto) => void;
@@ -75,7 +76,9 @@ export const CurrencyInput = (props: {
 	label: string;
 	max: MoneyDto;
 	hideControls?: boolean;
-}) => {
+};
+
+export const CurrencyInput = (props: CurrencyInputProps) => {
 	const {
 		value,
 		onValueChanged,
@@ -122,7 +125,7 @@ export const CurrencyInput = (props: {
 							onValueChanged(max);
 						}}
 						color={
-							value.amount == max.amount ? "primary" : "default"
+							value.amount == max.amount ? "primary" : "secondary"
 						}
 					>
 						Full
@@ -134,7 +137,7 @@ export const CurrencyInput = (props: {
 						color={
 							value.amount == defaultValue.amount
 								? "primary"
-								: "default"
+								: "secondary"
 						}
 					>
 						Partial
@@ -150,7 +153,7 @@ export const CurrencyInput = (props: {
 								),
 							})
 						}
-						color={value.amount == 0 ? "primary" : "default"}
+						color={value.amount == 0 ? "primary" : "secondary"}
 					>
 						None
 					</Button>
