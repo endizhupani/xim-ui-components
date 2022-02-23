@@ -1,11 +1,11 @@
 import React from "react";
 import * as ReactDOM from "react-dom";
-import { Default as Thing } from "../stories/XimTableLoading.stories";
+import { TableLoading } from "../stories/XimTableLoading.stories";
 
 describe("Thing", () => {
 	it("renders without crashing", () => {
 		const div = document.createElement("div");
-		ReactDOM.render(<Thing height="200px" />, div);
+		ReactDOM.render(<TableLoading height="200px" />, div);
 		ReactDOM.unmountComponentAtNode(div);
 	});
 });
