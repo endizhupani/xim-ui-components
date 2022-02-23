@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { CheckMark, XimThemeProvider } from "../src";
+import { CheckMark } from "../src";
 
 export default {
 	component: CheckMark,

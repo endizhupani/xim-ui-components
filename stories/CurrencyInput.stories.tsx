@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { CurrencyInput, XimThemeProvider } from "../src";
+import { CurrencyInput } from "../src";
 
 export default {
 	title: "Currency Input",

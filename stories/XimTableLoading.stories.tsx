@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, Story } from "@storybook/react";
-import { XimTableLoading, TableLoadingProps, XimThemeProvider } from "../src";
+import { XimTableLoading, TableLoadingProps } from "../src";
 
 const meta: Meta = {
 	title: "Loading",

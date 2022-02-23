@@ -1,5 +1,3 @@
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { ThemeProvider as Emotion10ThemeProvider } from "emotion-theming";
 import { XimThemeProvider } from "../src";
 
 const withThemeProvider = (Story, context) => {

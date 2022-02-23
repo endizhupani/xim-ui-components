@@ -1,11 +1,6 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import {
-	XimThemeProvider,
-	useConfirm,
-	ConfirmProvider,
-	UserChoice,
-} from "../src";
+import { ComponentMeta } from "@storybook/react";
+import { useConfirm, ConfirmProvider, UserChoice } from "../src";
 import { Button, Typography } from "@mui/material";
 import { useState } from "@storybook/addons";
 
