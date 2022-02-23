@@ -6,8 +6,6 @@ export default {
 	component: CheckMark,
 } as ComponentMeta<typeof CheckMark>;
 const Template: ComponentStory<typeof CheckMark> = (args) => (
-	<XimThemeProvider>
-		<CheckMark {...args}></CheckMark>
-	</XimThemeProvider>
+	<CheckMark {...args}></CheckMark>
 );
 export const CheckIcon = Template.bind({});

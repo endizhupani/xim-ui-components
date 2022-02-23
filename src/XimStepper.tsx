@@ -1,6 +1,6 @@
 import { Button, Divider, Step, StepLabel, Stepper } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useConfirm } from "material-ui-confirm";
+import { useConfirm } from "./ConfirmationDialog";
 import React, { FunctionComponent } from "react";
 import { XimInstructionsText } from "./XimInstructionsText";
 const PREFIX = "XimStepper";

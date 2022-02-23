@@ -8,9 +8,7 @@ export default {
 } as ComponentMeta<typeof CurrencyInput>;
 
 const Template: ComponentStory<typeof CurrencyInput> = (args) => (
-	<XimThemeProvider>
-		<CurrencyInput {...args}></CurrencyInput>
-	</XimThemeProvider>
+	<CurrencyInput {...args}></CurrencyInput>
 );
 export const CurrencyInputStory = Template.bind({});
 CurrencyInputStory.args = {

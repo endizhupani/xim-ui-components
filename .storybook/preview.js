@@ -1,15 +1,12 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { ThemeProvider as Emotion10ThemeProvider } from "emotion-theming";
-
-const defaultTheme = createTheme(); // or your custom theme
+import { XimThemeProvider } from "../src";
 
 const withThemeProvider = (Story, context) => {
 	return (
-		<Emotion10ThemeProvider theme={defaultTheme}>
-			<ThemeProvider theme={defaultTheme}>
-				<Story {...context} />
-			</ThemeProvider>
-		</Emotion10ThemeProvider>
+		<XimThemeProvider>
+			<Story {...context} />
+		</XimThemeProvider>
 	);
 };
 

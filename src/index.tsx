@@ -11,3 +11,4 @@ export * from "./XimThemeProvider";
 export * from "./CurrencyInput";
 export * from "./QuantityInput";
 export * from "./XimBackdrop";
+export * from "./ConfirmationDialog";
