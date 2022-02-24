@@ -16,25 +16,18 @@ declare module "@mui/styles/defaultTheme" {
 const themeOptionsV5: ThemeOptions = {
 	palette: {
 		mode: "dark",
-		secondary: {
-			main: "#ec6608",
-			dark: "#ec6608",
-		},
 		primary: {
 			main: "#ec6608",
-			dark: "#ec6608",
+		},
+		secondary: {
+			main: "#090909",
 		},
 		background: {
-			paper: "#3d3d3d",
 			default: "#252525",
+			paper: "#3d3d3d",
 		},
 		text: {
-			primary: "#fff",
-			disabled: "#7d7d7d",
 			secondary: "#ec6608",
-		},
-		action: {
-			disabled: "#7d7d7d",
 		},
 	},
 	breakpoints: {
