@@ -1,5 +1,6 @@
 import { XimThemeProvider } from "../src";
-
+import "typeface-benchnine";
+import "typeface-roboto";
 const withThemeProvider = (Story, context) => {
 	return (
 		<XimThemeProvider>
