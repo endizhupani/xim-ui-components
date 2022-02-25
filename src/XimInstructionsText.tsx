@@ -16,7 +16,7 @@ const StyledTypography = styled(Typography)(({ theme: Theme }) => ({
 
 export const XimInstructionsText = (props: { text: string }) => {
 	return (
-		<StyledTypography className={classes.instructions}>
+		<StyledTypography variant="caption" className={classes.instructions}>
 			{props.text}
 		</StyledTypography>
 	);

@@ -28,6 +28,7 @@ const themeOptionsV5: ThemeOptions = {
 		},
 		text: {
 			secondary: "#ec6608",
+			primary: "#ffffff",
 		},
 	},
 	breakpoints: {
@@ -41,6 +42,9 @@ const themeOptionsV5: ThemeOptions = {
 	},
 	typography: {
 		fontFamily: ["Roboto", "sans-serif"].join(","),
+		allVariants: {
+			color: "#ffffff",
+		},
 		h1: {
 			fontFamily: "BenchNine",
 			textTransform: "uppercase",

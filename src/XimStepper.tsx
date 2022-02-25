@@ -55,7 +55,10 @@ export const XimStepper = (props: StepperProps) => {
 
 	return (
 		<div className={classes.root}>
-			<Stepper activeStep={activeStep}>
+			<Stepper
+				sx={{ marginBottom: (theme) => theme.spacing(1) }}
+				activeStep={activeStep}
+			>
 				{props.steps.map((step, _) => {
 					const stepProps: { completed?: boolean } = {};
 					const labelProps: { optional?: React.ReactNode } = {};
@@ -136,63 +139,62 @@ export type ProcessStepProperties = {
 	helperText?: string;
 };
 
-export const XimeaProcessStep: FunctionComponent<InternalProcessStepProperties> = (
-	props
-) => {
-	const { reset, back, next, helperText } = props;
+export const XimeaProcessStep: FunctionComponent<InternalProcessStepProperties> =
+	(props) => {
+		const { reset, back, next, helperText } = props;
 
-	return (
-		<Root>
-			<div
-				style={{
-					display: "flex",
-					flexDirection: "column",
-					flexGrow: 1,
-				}}
-			>
-				{helperText && <XimInstructionsText text={helperText} />}
-				{props.children}
-			</div>
-			<div
-				style={{
-					display: "flex",
-					justifyContent: "space-between",
-					width: "100%",
-				}}
-			>
-				<div>
-					<Button
-						onClick={() => {
-							reset.action();
-						}}
-						className={classes.button}
-					>
-						{reset.label || "Reset"}
-					</Button>
+		return (
+			<Root>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						flexGrow: 1,
+					}}
+				>
+					{helperText && <XimInstructionsText text={helperText} />}
+					{props.children}
 				</div>
-				<div>
-					<Button
-						disabled={back.disabled}
-						className={classes.button}
-						onClick={() => {
-							back.action();
-						}}
-					>
-						{back.label || "Back"}
-					</Button>
-					<Button
-						onClick={() => {
-							next.action();
-						}}
-						variant="contained"
-						color="primary"
-						disabled={next.disabled}
-						className={classes.button}
-					>
-						{next.label || "Next"}
-					</Button>
+				<div
+					style={{
+						display: "flex",
+						justifyContent: "space-between",
+						width: "100%",
+					}}
+				>
+					<div>
+						<Button
+							onClick={() => {
+								reset.action();
+							}}
+							className={classes.button}
+						>
+							{reset.label || "Reset"}
+						</Button>
+					</div>
+					<div>
+						<Button
+							disabled={back.disabled}
+							className={classes.button}
+							onClick={() => {
+								back.action();
+							}}
+						>
+							{back.label || "Back"}
+						</Button>
+						<Button
+							onClick={() => {
+								next.action();
+							}}
+							variant="contained"
+							color="primary"
+							disabled={next.disabled}
+							className={classes.button}
+						>
+							{next.label || "Next"}
+						</Button>
+					</div>
 				</div>
-			</div>
-		</Root>
-	);
-};
+			</Root>
+		);
+	};

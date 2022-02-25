@@ -43,7 +43,9 @@ const ConfirmationDialog = ({
 			) : (
 				description && (
 					<DialogContent>
-						<DialogContentText>{description}</DialogContentText>
+						<DialogContentText color="HighlightText">
+							{description}
+						</DialogContentText>
 					</DialogContent>
 				)
 			)}
