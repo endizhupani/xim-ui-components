@@ -40,34 +40,33 @@ const themeOptionsV5: ThemeOptions = {
 		},
 	},
 	typography: {
-		fontSize: 14,
-		body1: {
-			fontSize: "14px",
-		},
+		fontFamily: ["Roboto", "sans-serif"].join(","),
 		h1: {
 			fontFamily: "BenchNine",
 			textTransform: "uppercase",
+			fontSize: "4rem",
 		},
 		h2: {
 			fontFamily: "BenchNine",
 			textTransform: "uppercase",
+			fontSize: "3.2rem",
 		},
 		h3: {
 			fontFamily: "BenchNine",
 			textTransform: "uppercase",
+			fontSize: "2.6rem",
 		},
 		h4: {
 			fontFamily: "BenchNine",
 			textTransform: "uppercase",
 		},
-	},
-	components: {
-		MuiCssBaseline: {
-			styleOverrides: {
-				root: {
-					fontSize: "1rem",
-				},
-			},
+		h5: {
+			fontFamily: "BenchNine",
+			textTransform: "uppercase",
+		},
+		h6: {
+			fontFamily: "BenchNine",
+			textTransform: "uppercase",
 		},
 	},
 };

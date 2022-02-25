@@ -1,3 +1,5 @@
+import "typeface-benchnine";
+import "typeface-roboto";
 export * from "./XimAccordionGroup";
 export * from "./XimErrorSnackbar";
 export * from "./XimDetailsBoxLoading";

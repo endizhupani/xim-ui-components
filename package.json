@@ -59,6 +59,8 @@
 		"@mui/styles": "^5.4.2",
 		"@storybook/theming": "^6.4.19",
 		"react-number-format": "^4.7.3",
+		"typeface-benchnine": "^1.1.13",
+		"typeface-roboto": "^1.1.13",
 		"webpack": "^5.69.1"
 	},
 	"devDependencies": {
