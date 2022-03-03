@@ -1,7 +1,15 @@
-import { Button, Divider, Step, StepLabel, Stepper } from "@mui/material";
+import {
+	Button,
+	Divider,
+	Step,
+	StepLabel,
+	Stepper,
+	Typography,
+	useTheme,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useConfirm } from "./ConfirmationDialog";
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useEffect } from "react";
 import { XimInstructionsText } from "./XimInstructionsText";
 const PREFIX = "XimStepper";
 
@@ -23,7 +31,41 @@ const Root = styled("div")(({ theme: Theme }) => ({
 		height: "100%",
 	},
 }));
+function lastEnabledStepIdx(steps: XimeaProcessStepData[]) {
+	for (let i = steps.length - 1; i >= 0; i--) {
+		if (!steps[i].disabled) {
+			return i;
+		}
+	}
 
+	return -1;
+}
+
+function nextEnabledStepIdx(steps: XimeaProcessStepData[], currentIdx: number) {
+	if (currentIdx >= steps.length - 1) {
+		return steps.length;
+	}
+	for (let i = currentIdx + 1; i < steps.length; i++) {
+		if (!steps[i].disabled) {
+			return i;
+		}
+	}
+
+	return steps.length;
+}
+
+function previousEnabledStepIdx(
+	steps: XimeaProcessStepData[],
+	currentIdx: number
+) {
+	for (let i = currentIdx - 1; i >= 0; i--) {
+		if (!steps[i].disabled) {
+			return i;
+		}
+	}
+
+	return -1;
+}
 export type StepperProps = {
 	onReset: () => void;
 	endScreen?: React.ReactNode;
@@ -33,12 +75,17 @@ export type StepperProps = {
 export const XimStepper = (props: StepperProps) => {
 	const [activeStep, setActiveStep] = React.useState(0);
 	const confirm = useConfirm();
+	const theme = useTheme();
 	const handleNext = () => {
-		setActiveStep((prevActiveStep) => prevActiveStep + 1);
+		setActiveStep((prevActiveStep) =>
+			nextEnabledStepIdx(props.steps, prevActiveStep)
+		);
 	};
 
 	const handleBack = () => {
-		setActiveStep((prevActiveStep) => prevActiveStep - 1);
+		setActiveStep((prevActiveStep) =>
+			previousEnabledStepIdx(props.steps, prevActiveStep)
+		);
 	};
 
 	const handleReset = () => {
@@ -52,6 +99,23 @@ export const XimStepper = (props: StepperProps) => {
 			setActiveStep(0);
 		});
 	};
+	useEffect(() => {
+		if (
+			activeStep >= props.steps.length ||
+			!props.steps[activeStep].disabled ||
+			activeStep === 0
+		) {
+			return;
+		}
+
+		// find the first enabled step smaller than active one.
+		for (let i = activeStep - 1; i >= 0; i--) {
+			if (!props.steps[i].disabled) {
+				setActiveStep(i);
+				return;
+			}
+		}
+	});
 
 	return (
 		<div className={classes.root}>
@@ -61,17 +125,36 @@ export const XimStepper = (props: StepperProps) => {
 			>
 				{props.steps.map((step, _) => {
 					const stepProps: { completed?: boolean } = {};
-					const labelProps: { optional?: React.ReactNode } = {};
 
 					return (
-						<Step key={step.title} {...stepProps}>
-							<StepLabel {...labelProps}>{step.title}</StepLabel>
+						<Step
+							key={step.title}
+							{...stepProps}
+							disabled={step.disabled}
+						>
+							<StepLabel
+								color={
+									step.disabled
+										? theme.palette.text.disabled
+										: theme.palette.text.primary
+								}
+							>
+								<Typography
+									color={
+										step.disabled
+											? "GrayText"
+											: theme.palette.text.primary
+									}
+								>
+									{step.title}
+								</Typography>
+							</StepLabel>
 						</Step>
 					);
 				})}
 			</Stepper>
 			<Divider></Divider>
-			{activeStep < props.steps.length ? (
+			{activeStep <= lastEnabledStepIdx(props.steps) ? (
 				<XimeaProcessStep
 					helperText={props.steps[activeStep].properties.helperText}
 					back={{
@@ -117,6 +200,7 @@ export type XimeaProcessStepData = {
 	title: string;
 	properties: ProcessStepProperties;
 	content: React.ReactNode;
+	disabled?: boolean;
 };
 
 type ButtonData = {
