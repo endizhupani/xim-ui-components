@@ -12,3 +12,4 @@ export * from "./CurrencyInput";
 export * from "./QuantityInput";
 export * from "./XimBackdrop";
 export * from "./ConfirmationDialog";
+export * from "./OptionsInput";
