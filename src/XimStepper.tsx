@@ -252,6 +252,8 @@ export const XimeaProcessStep: FunctionComponent<InternalProcessStepProperties> 
 								reset.action();
 							}}
 							className={classes.button}
+							variant="contained"
+							color="info"
 						>
 							{reset.label || "Reset"}
 						</Button>

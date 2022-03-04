@@ -30,6 +30,11 @@ const themeOptionsV5: ThemeOptions = {
 			secondary: "#ec6608",
 			primary: "#ffffff",
 		},
+		info: {
+			main: "#f1f2eb",
+			//main: "#edebd7",
+			//main: "#e4d6a7",
+		},
 	},
 	breakpoints: {
 		values: {
