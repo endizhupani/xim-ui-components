@@ -13,3 +13,4 @@ export * from "./QuantityInput";
 export * from "./XimBackdrop";
 export * from "./ConfirmationDialog";
 export * from "./OptionsInput";
+export * from "./XimTable";
